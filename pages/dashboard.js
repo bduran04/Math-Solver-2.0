@@ -21,6 +21,7 @@ const Dashboard = () => {
             <Row><Input onChange={(e) => setEquation(e.target.value)} placeholder="2x + 3 = 10" /></Row>
             <Button onClick={() => submitEquation()}>Submit</Button>
             {answer && <div>{answer}</div>}
+            <Button onClick={async () => {await router.push('/study-guides')}}>Study Guides</Button>
         </>
     )
 }
