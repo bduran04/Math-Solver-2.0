@@ -9,9 +9,12 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@geist-ui/react": "^2.1.5",
     "next": "11.1.0",
     "react": "17.0.2",
-    "react-dom": "17.0.2"
+    "react-dom": "17.0.2",
+    "swr": "^0.5.6",
+    "wolfram-alpha-api": "https://products.wolframalpha.com/api/libraries/javascript/wolfram-alpha-api-1.0.0-rc.1.tgz"
   },
   "devDependencies": {
     "eslint": "7.32.0",
