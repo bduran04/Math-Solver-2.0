@@ -1,7 +1,10 @@
+import GenericLayout from "../layout/genericLayout";
 
 const StudyGuides = () => {
     return (
-        <div>Hello Study guide page</div>
+        <GenericLayout>
+            <div>Hello Study guide page</div>
+        </GenericLayout>
     )
 }
 
