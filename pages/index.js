@@ -1,14 +1,27 @@
-import {Row, Grid, Input, Spacer, Button, Image} from "@geist-ui/react";
+import {Grid, Input, Button, Image} from "@geist-ui/react";
 import {Search} from '@geist-ui/react-icons'
+import { supabase } from '../utils/supabaseClient'
+import Login from "./login";
+import Auth from '../utils/Auth'
 import {useRouter} from 'next/router'
-import {useState} from 'react'
+import {useState, useEffect} from 'react'
 import GenericLayout from "../layout/genericLayout";
 
 const Home = () => {
+    const [session, setSession] = useState(null)
     const [answer, setAnswer] = useState('')
     const [equation, setEquation] = useState('')
     const [image, setImage] = useState('')
     const submitEquation = async () => {
+
+        useEffect(() => {
+            setSession(supabase.auth.session())
+
+            supabase.auth.onAuthStateChange((_event, session) => {
+                setSession(session)
+            })
+        }, [])
+
         const wolframAnswer = await fetch('/api/wolfram', {
             method: 'POST',
             body: JSON.stringify({equation})
@@ -21,16 +34,20 @@ const Home = () => {
     const router = useRouter()
     return (
         <GenericLayout>
-            <Grid.Container align="center" justify="center" direction="column" gap={2}>
+            <Grid.Container style={{ padding: "2rem"}} align="center" justify="center" direction="column" gap={2}>
+               <div>
+                   {!session ? <Auth /> : <Login key={session.user.id} session={session} />}
+               </div>
                 <Grid>
                     <Input onChange={(e) => setEquation(e.target.value)} placeholder="2x + 3 = 10"/>
-                    <Button iconRight={<Search/>} auto padding={0} type="success"
-                            onClick={() => submitEquation()}></Button>
+                    <Button iconRight={<Search/>} auto padding={0} type="success" onClick={() => submitEquation()}/>
                 </Grid>
                 <Grid>
-                    {answer && <div>{answer}</div>}
+                    {answer && <div> Answer: {answer}</div>}
                 </Grid>
-                {image && <Image src={image}/>}
+                {image && <Image.Browser>
+                    <Image src={image}/>
+                </Image.Browser>}
                 <Grid>
                     <Button onClick={async () => {
                         await router.push('/study-guides')

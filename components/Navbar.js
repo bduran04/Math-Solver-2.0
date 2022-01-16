@@ -6,18 +6,18 @@ const Navbar = () => {
     const router = useRouter()
 
     return (
-        <div>
+        <div >
             <Grid.Container justify="space-between" alignItems="center" style={{margin: "0 0.25rem"}}>
                 <Grid>
                     <Text h2>Math Solver</Text>
                 </Grid>
                 <Grid>
-                    <Button width="100%" height="50px" icon={<User/>} onClick={async () => {
+                    <Button icon={<User/>} onClick={async () => {
                         await router.push('/login')
                     }}>Login</Button>
                 </Grid>
             </Grid.Container>
-            <Divider h={5} type="dark"/>
+                <Divider h={5} type="dark" />
         </div>
 
     )
