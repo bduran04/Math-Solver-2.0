@@ -2,6 +2,8 @@ import {Button, Divider, Grid, Text} from "@geist-ui/react";
 import {User} from "@geist-ui/react-icons";
 import {useRouter} from 'next/router'
 
+//create a route where if logged in, hide the logout button, if logged in, show the button
+
 const Navbar = () => {
     const router = useRouter()
 
