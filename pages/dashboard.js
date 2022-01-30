@@ -4,6 +4,11 @@ import {useState, useEffect} from "react";
 import {Grid, Image} from "@geist-ui/react";
 
 //create a way that displays the data when click on study guide
+//1) user enters name + passowrd & clicks login
+//2) the app takes the username + password & send to supabase and checks to see if they match
+//3) if a 200 is returned, set the username as the cookie
+//4) redirect the user to the study guide page
+//5) on studyguide page load, use a useEffect & check the session username + password & retrieves studyguides
 
 const Dashboard = () => {
     const [studyGuidedata, setStudyGuideData] = useState();
