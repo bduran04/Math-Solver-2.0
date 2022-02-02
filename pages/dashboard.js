@@ -1,13 +1,9 @@
 import GenericLayout from "../layout/genericLayout";
 import {supabase} from "../utils/supabaseClient";
 import {useState, useEffect} from "react";
-import {Grid, Image} from "@geist-ui/react";
 
 //create a way that displays the data when click on study guide
-//1) user enters name + passowrd & clicks login
-//2) the app takes the username + password & send to supabase and checks to see if they match
-//3) if a 200 is returned, set the username as the cookie
-//4) redirect the user to the study guide page
+//4) redirect the user to the study guide/dashboard page
 //5) on studyguide page load, use a useEffect & check the session username + password & retrieves studyguides
 
 const Dashboard = () => {
@@ -16,8 +12,8 @@ const Dashboard = () => {
         let { data, error } = await supabase
             .from('Study_Guides')
             .select("*")
-            //params for showing which study guide to populate
-            .filter("created_by", "eq", "mittens")
+            //update value to display the logged in user
+            .filter("created_by", "eq", "Kitsune")
         console.log(data)
         setStudyGuideData(data);
     }

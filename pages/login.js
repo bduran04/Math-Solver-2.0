@@ -3,6 +3,8 @@ import { useRouter } from 'next/router'
 import {supabase} from "../utils/supabaseClient";
 import {useState} from "react"
 
+//create a toast that notifies when a User has successfully registered to the database
+
 const Login = () => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
@@ -15,11 +17,10 @@ const Login = () => {
             .insert([
                 { username, password },
             ])
-        console.log(data)
     }
 
     const login = async () => {
-        sessionStorage.setItem("username", "John Doe");
+        sessionStorage.setItem("username", username);
         await router.push('/dashboard')
     }
     return (
