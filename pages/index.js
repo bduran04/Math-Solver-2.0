@@ -12,7 +12,7 @@ const Home = () => {
     const [answer, setAnswer] = useState('')
     const [equation, setEquation] = useState('')
     const [image, setImage] = useState('')
-    const submitEquation = async () => {
+    const SubmitEquation = async () => {
 
         useEffect(() => {
             setSession(supabase.auth.session())
@@ -40,7 +40,7 @@ const Home = () => {
                </div>
                 <Grid>
                     <Input onChange={(e) => setEquation(e.target.value)} placeholder="2x + 3 = 10"/>
-                    <Button iconRight={<Search/>} auto padding={0} type="success" onClick={() => submitEquation()}/>
+                    <Button iconRight={<Search/>} auto padding={0} type="success" onClick={() => SubmitEquation()}/>
                 </Grid>
                 <Grid>
                     {answer && <div> Answer: {answer}</div>}
