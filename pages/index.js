@@ -48,11 +48,6 @@ const Home = () => {
                 {image && <Image.Browser>
                     <Image src={image}/>
                 </Image.Browser>}
-                <Grid>
-                    <Button onClick={async () => {
-                        await router.push('/study-guides')
-                    }}>Study Guides</Button>
-                </Grid>
             </Grid.Container>
         </GenericLayout>
     )
