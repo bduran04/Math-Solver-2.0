@@ -20,18 +20,18 @@ const Navbar = () => {
         <div >
             <Grid.Container justify="space-between" alignItems="center" style={{margin: "0 0.25rem"}}>
                 <Grid>
-                    <Text h2>Math Solver</Text>
+                    <Text h2>Algebra Solver</Text>
                 </Grid>
                 <Grid>
                     {/*{userToken}*/}
-                    {!userToken && <Button icon={<User/>} onClick={async () => {
+                    {!userToken && <Button style={{marginRight: '2rem'}} icon={<User/>} onClick={async () => {
                         await router.push('/login')
                     }}>Login</Button>}
-                    {userToken && <Button icon={<User/>} onClick={async () => logout()
+                    {userToken && <Button style={{marginRight: '2rem'}}  icon={<User/>} onClick={async () => logout()
                     }>Logout</Button>}
                 </Grid>
             </Grid.Container>
-                <Divider h={5} type="dark" />
+                <Divider h={5} />
         </div>
 
     )

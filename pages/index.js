@@ -1,4 +1,4 @@
-import {Grid, Input, Button, Image} from "@geist-ui/react";
+import {Grid, Input, Button, Image, Spacer} from "@geist-ui/react";
 import {Search} from '@geist-ui/react-icons'
 import { supabase } from '../utils/supabaseClient'
 import Login from "./login";
@@ -36,13 +36,14 @@ const Home = () => {
     const router = useRouter()
     return (
         <GenericLayout>
-            <Grid.Container style={{ padding: "2rem"}} align="center" justify="center" direction="column" gap={2}>
+            <Grid.Container style={{ padding: "2rem"}} align="center" justify="center" direction="column" >
                <div>
                    {!session ? <Auth /> : <Login key={session.user.id} session={session} />}
                </div>
                 <Grid>
-                    <Input onChange={(e) => setEquation(e.target.value)} placeholder="2x + 3 = 10"/>
-                    <Button iconRight={<Search/>} auto padding={0} type="success" onClick={() => submitEquation()}/>
+                    <Input onChange={(e) => setEquation(e.target.value)} placeholder="Ex. 2x + 3 = 10" width="50%"/>
+                    <Spacer h={.5} />
+                    <Button icon={<Search/>} type="success" onClick={() => submitEquation()}>Calculate</Button>
                 </Grid>
                 <Grid>
                     {answer && <div> Answer: {answer}</div>}

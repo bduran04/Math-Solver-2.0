@@ -8,6 +8,9 @@ import {useState, useEffect} from "react";
 
 const Dashboard = () => {
     const [studyGuidedata, setStudyGuideData] = useState();
+
+    const userName = sessionStorage.getItem("username")
+
     const fetchStudyGuideData = async () => {
         let { data, error } = await supabase
             .from('Study_Guides')
@@ -17,6 +20,7 @@ const Dashboard = () => {
         console.log(data)
         setStudyGuideData(data);
     }
+
     useEffect(() => {
       fetchStudyGuideData();
     }, []);
@@ -24,7 +28,7 @@ const Dashboard = () => {
     return (
         //remove the logout button
         <GenericLayout>
-            <div>Hello dashboard page</div>
+            <div>Welcome {userName}, to your Dashboard Page</div>
             {studyGuidedata && <div>
                 {studyGuidedata.map((data,i) => <div key={data.created_at + i}>{data.name}</div>)}
             </div>}

@@ -23,14 +23,15 @@ const Login = () => {
         sessionStorage.setItem("username", username);
         await router.push('/dashboard')
     }
+
     return (
-        <Grid.Container style={{paddingTop: '4rem', justifyContent: 'center' }}>
+        <Grid.Container style={{paddingTop: '4rem', justifyContent: 'center'}}>
             <Grid gap={1.5} xs={12} md={6}>
-                <Card style={{margin: '3rem', padding: '1rem'}}>
-                    <Row style={{marginBottom: '1rem'}}> <Input onChange={(e) => setUsername(e.target.value)} placeholder="Username" width="100%" /> </Row>
-                    <Row style={{marginBottom: '1rem'}}> <Input onChange={(e) => setPassword(e.target.value)} placeholder="Password" width="100%"/></Row>
-                    <Button type="success" width="0.5rem" mx="1rem" style={{marginBottom: '1rem'}} onClick={async () => await login()}>Log In</Button>
-                    <Row style={{justifyContent: "center"}}> <Link style={{alignContent: ''}} href="/register" color>Need an account?</Link> </Row>
+                <Card shadow style={{margin: '3rem', padding: '1rem'}}>
+                    <Row style={{marginBottom: '1rem'}}> <Input onChange={(e) => setUsername(e.target.value)} placeholder="Username" width="100%" /></Row>
+                    <Row style={{marginBottom: '1rem'}}> <Input.Password onChange={(e) => setPassword(e.target.value)} placeholder="Password" width="100%"/></Row>
+                    <Row style={{marginBottom: '1rem'}}> <Button type="success" onClick={async () => await login()}>Log In</Button></Row>
+                    <Row style={{justifyContent: "center"}}> <Link href="/register" color>Need an account?</Link> </Row>
                 </Card>
             </Grid>
         </Grid.Container>
