@@ -8,18 +8,24 @@ import {useState, useEffect} from "react";
 
 const Dashboard = () => {
     const [studyGuidedata, setStudyGuideData] = useState();
+    const [users, setUsers] = useState(0);
 
-    const userName = sessionStorage.getItem("username")
+    //this error pops up bc of this TypeError: Cannot read properties of undefined (reading 'user')
+    useEffect(() => {
+        setUsers([{user: sessionStorage.getItem("username")}])
+    }, []);
 
-    // const fetchStudyGuideData = async () => {
-    //     let { data, error } = await supabase
-    //         .from('Study_Guides')
-    //         .select("*")
-    //         //update value to display the logged in user
-    //         .filter("created_by", "eq", "Kitsune")
-    //     console.log(data)
-    //     setStudyGuideData(data);
-    // }
+    console.log(users[0].user)
+
+    const fetchStudyGuideData = async () => {
+        let { data, error } = await supabase
+            .from('Study_Guides')
+            .select("*")
+            //update value to display the logged in user
+            .filter("created_by", "eq", "Kitsune")
+        console.log(data)
+        setStudyGuideData(data);
+    }
 
     useEffect(() => {
       fetchStudyGuideData();
@@ -28,10 +34,10 @@ const Dashboard = () => {
     return (
         //remove the logout button
         <GenericLayout>
-            <div>Welcome {userName}, to your Dashboard Page</div>
-            {/*{studyGuidedata && <div>*/}
-            {/*    {studyGuidedata.map((data,i) => <div key={data.created_at + i}>{data.name}</div>)}*/}
-            {/*</div>}*/}
+            <div>Welcome {users[0].user}, to your Dashboard Page</div>
+            {studyGuidedata && <div>
+                {studyGuidedata.map((data,i) => <div key={data.created_at + i}>{data.name}</div>)}
+            </div>}
         </GenericLayout>
     )
 }
