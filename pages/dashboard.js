@@ -11,15 +11,15 @@ const Dashboard = () => {
 
     const userName = sessionStorage.getItem("username")
 
-    const fetchStudyGuideData = async () => {
-        let { data, error } = await supabase
-            .from('Study_Guides')
-            .select("*")
-            //update value to display the logged in user
-            .filter("created_by", "eq", "Kitsune")
-        console.log(data)
-        setStudyGuideData(data);
-    }
+    // const fetchStudyGuideData = async () => {
+    //     let { data, error } = await supabase
+    //         .from('Study_Guides')
+    //         .select("*")
+    //         //update value to display the logged in user
+    //         .filter("created_by", "eq", "Kitsune")
+    //     console.log(data)
+    //     setStudyGuideData(data);
+    // }
 
     useEffect(() => {
       fetchStudyGuideData();
@@ -29,9 +29,9 @@ const Dashboard = () => {
         //remove the logout button
         <GenericLayout>
             <div>Welcome {userName}, to your Dashboard Page</div>
-            {studyGuidedata && <div>
-                {studyGuidedata.map((data,i) => <div key={data.created_at + i}>{data.name}</div>)}
-            </div>}
+            {/*{studyGuidedata && <div>*/}
+            {/*    {studyGuidedata.map((data,i) => <div key={data.created_at + i}>{data.name}</div>)}*/}
+            {/*</div>}*/}
         </GenericLayout>
     )
 }
