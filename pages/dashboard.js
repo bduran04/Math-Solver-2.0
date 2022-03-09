@@ -1,4 +1,5 @@
 import GenericLayout from "../layout/genericLayout";
+import {Text} from "@geist-ui/react";
 import {supabase} from "../utils/supabaseClient";
 import {useState, useEffect} from "react";
 
@@ -8,14 +9,12 @@ import {useState, useEffect} from "react";
 
 const Dashboard = () => {
     const [studyGuidedata, setStudyGuideData] = useState();
-    const [users, setUsers] = useState(0);
+    const [users, setUsers] = useState([{user: ''}]);
 
     //this error pops up bc of this TypeError: Cannot read properties of undefined (reading 'user')
     useEffect(() => {
         setUsers([{user: sessionStorage.getItem("username")}])
     }, []);
-
-    console.log(users[0].user)
 
     const fetchStudyGuideData = async () => {
         let { data, error } = await supabase
@@ -34,7 +33,7 @@ const Dashboard = () => {
     return (
         //remove the logout button
         <GenericLayout>
-            <div>Welcome {users[0].user}, to your Dashboard Page</div>
+            <Text>Welcome {users[0].user}, to your Dashboard Page</Text>
             {studyGuidedata && <div>
                 {studyGuidedata.map((data,i) => <div key={data.created_at + i}>{data.name}</div>)}
             </div>}
