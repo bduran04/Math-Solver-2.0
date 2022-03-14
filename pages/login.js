@@ -9,7 +9,7 @@ const Login = () => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const router = useRouter()
-    //get data
+    //when the user logs in, it not only obtains data from sessionStorage but also the database
     const register = async () => {
         console.log(username, password)
         const { data, error } = await supabase

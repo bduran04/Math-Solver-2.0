@@ -16,6 +16,7 @@ const Dashboard = () => {
         setUsers([{user: sessionStorage.getItem("username")}])
     }, []);
 
+    //displays all of the study guides
     const fetchStudyGuideData = async () => {
         let { data, error } = await supabase
             .from('Study_Guides')
@@ -31,7 +32,6 @@ const Dashboard = () => {
     }, []);
 
     return (
-        //remove the logout button
         <GenericLayout>
             <Text>Welcome {users[0].user}, to your Dashboard Page</Text>
             {studyGuidedata && <div>
