@@ -16,7 +16,10 @@ const Register = () => {
             .from('Users')
             .insert([
                 { username, password },
-            ])
+            ]); if (data.status === 200) {
+            window.alert("registration successful");
+           await router.push('/')
+        }
     }
 
     return (
