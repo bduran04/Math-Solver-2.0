@@ -1,27 +1,26 @@
-import {Card, Row, Input, Button, Grid, Link} from "@geist-ui/react";
+import {Card, Row, Input, Button, Grid, Link, useToasts} from "@geist-ui/react";
 import { useRouter } from 'next/router'
 import {supabase} from "../utils/supabaseClient";
 import {useState} from "react"
 
-//create a toast that notifies when a User has successfully registered to the database
 
 const Login = () => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const router = useRouter()
+
+    const [, setToast ] = useToasts()
+    const click = () => setToast({ text: 'Login Successful!', delay: 2000, type: "success" })
+
     //when the user logs in, it not only obtains data from sessionStorage but also the database
-    const register = async () => {
-        console.log(username, password)
-        const { data, error } = await supabase
-            .from('Users')
-            .insert([
-                { username, password },
-            ])
-    }
 
     const login = async () => {
         sessionStorage.setItem("username", username);
-        await router.push('/dashboard')
+        await router.push('/dashboard');
+            if (!error) {
+            click();
+            await router.push('/login')
+        }
     }
 
     return (
